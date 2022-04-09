@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Lifecycle App</string>
+    <string name="change_page">Pindah Halaman</string>
+</resources>
