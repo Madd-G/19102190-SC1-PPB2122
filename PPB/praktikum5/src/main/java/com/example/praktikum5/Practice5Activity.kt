@@ -2,18 +2,23 @@ package com.example.praktikum5
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Application
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_practice5.*
 
 class Practice5Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_practice5)
         btnProdi.setOnClickListener {
