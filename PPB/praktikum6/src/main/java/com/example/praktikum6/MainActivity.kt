@@ -26,13 +26,17 @@ class MainActivity : AppCompatActivity() {
     private fun getListMyDatas(): ArrayList<MyData> {
         val dataName = resources.getStringArray(R.array.data_name)
         val dataDescription = resources.getStringArray(R.array.data_description)
-        val dataPhoto = resources.getStringArray(R.array.item_photo)
+        val dataPhoto = resources.getStringArray(R.array.data_photo)
+        val dataLat = resources.getStringArray(R.array.data_lat)
+        val dataLang = resources.getStringArray(R.array.data_lang)
         val listMyData = ArrayList<MyData>()
         for (position in dataName.indices) {
             val myData = MyData(
                 dataName[position],
                 dataDescription[position],
-                dataPhoto[position]
+                dataPhoto[position],
+                dataLat[position].toDouble(),
+                dataLang[position].toDouble()
             )
             listMyData.add(myData)
         }
@@ -77,8 +81,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun showRecyclerCardView() {
         rv_mydata.layoutManager = LinearLayoutManager(this)
-        val cardViewMyDataAdapter =
-            CardViewMyDataAdapter(list)
+        val cardViewMyDataAdapter = CardViewMyDataAdapter(list, this@MainActivity)
         rv_mydata.adapter = cardViewMyDataAdapter
     }
 
