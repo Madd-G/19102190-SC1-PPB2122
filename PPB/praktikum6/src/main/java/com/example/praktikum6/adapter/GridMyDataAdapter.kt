@@ -1,5 +1,7 @@
 package com.example.praktikum6.adapter
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,10 +9,11 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.praktikum6.DetailActivity
 import com.example.praktikum6.MyData
 import com.example.praktikum6.R
 
-class GridMyDataAdapter(val listMyDatas: ArrayList<MyData>) :
+class GridMyDataAdapter(val listMyDatas: ArrayList<MyData>, val context: Context) :
     RecyclerView.Adapter<GridMyDataAdapter.GridViewHolder>() {
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): GridViewHolder {
         val view: View = LayoutInflater.from(viewGroup.context)
@@ -19,8 +22,15 @@ class GridMyDataAdapter(val listMyDatas: ArrayList<MyData>) :
     }
 
     override fun onBindViewHolder(holder: GridViewHolder, position: Int) {
+        val myData = listMyDatas[position]
         Glide.with(holder.itemView.context).load(listMyDatas[position].photo)
             .apply(RequestOptions().override(350, 550)).into(holder.imgPhoto)
+
+        holder.itemView.setOnClickListener {
+            val moveWithObjectIntent = Intent(context, DetailActivity::class.java)
+            moveWithObjectIntent.putExtra(DetailActivity.EXTRA_MYDATA, myData)
+            context.startActivity(moveWithObjectIntent)
+        }
     }
 
     override fun getItemCount(): Int {
