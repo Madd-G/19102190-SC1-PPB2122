@@ -14,9 +14,9 @@
             <option value="$PROJECT_DIR$/lifecycleapp" />
             <option value="$PROJECT_DIR$/praktikum5" />
             <option value="$PROJECT_DIR$/praktikum6" />
+            <option value="$PROJECT_DIR$/sharedpreference" />
           </set>
         </option>
-        <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>
     </option>
   </component>
