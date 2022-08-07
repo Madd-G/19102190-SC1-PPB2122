@@ -36,17 +36,27 @@ class SettingPreferenceActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(p0: View?) {
         if (p0?.id == R.id.btn_save) {
+            val fullName = binding.edtFullName.text.toString().trim()
             val name = binding.edtName.text.toString().trim()
             val email = binding.edtEmail.text.toString().trim()
+            val address = binding.edtAddress.text.toString().trim()
             val age = binding.edtAge.text.toString().trim()
             val phoneNo = binding.edtPhone.text.toString().trim()
             val isLoveMU = binding.rgLoveMu.checkedRadioButtonId == R.id.rb_yes
+            if (fullName.isEmpty()) {
+                binding.edtFullName.error = getString(R.string.field_required)
+                return
+            }
             if (name.isEmpty()) {
                 binding.edtName.error = getString(R.string.field_required)
                 return
             }
             if (email.isEmpty()) {
                 binding.edtEmail.error = getString(R.string.field_required)
+                return
+            }
+            if (address.isEmpty()) {
+                binding.edtAddress.error = getString(R.string.field_required)
                 return
             }
             if (!isValidEmail(email)) {
@@ -65,7 +75,7 @@ class SettingPreferenceActivity : AppCompatActivity(), View.OnClickListener {
                 binding.edtPhone.error = getString(R.string.field_digit_only)
                 return
             }
-            saveSetting(name, email, age, phoneNo, isLoveMU)
+            saveSetting(fullName, name, email, address, age, phoneNo, isLoveMU)
             val resultIntent = Intent()
             setResult(RESULT_CODE, resultIntent)
             finish()
@@ -77,8 +87,10 @@ class SettingPreferenceActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun showPreferenceInForm() {
+        binding.edtFullName.setText(settingModel.fullName)
         binding.edtName.setText(settingModel.name)
         binding.edtEmail.setText(settingModel.email)
+        binding.edtAddress.setText(settingModel.address)
         binding.edtAge.setText(settingModel.age.toString())
         binding.edtPhone.setText(settingModel.phoneNumber)
         if (settingModel.isDarkTheme) {
@@ -88,10 +100,12 @@ class SettingPreferenceActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun saveSetting(name: String, email: String, age: String, phoneNo: String, isDark: Boolean) {
+    private fun saveSetting(fullName: String, name: String, email: String,address: String, age: String, phoneNo: String, isDark: Boolean) {
         val settingPreference = SettingPreference(this)
+        settingModel.fullName = fullName
         settingModel.name = name
         settingModel.email = email
+        settingModel.address = address
         settingModel.age = Integer.parseInt(age)
         settingModel.phoneNumber = phoneNo
         settingModel.isDarkTheme = isDark

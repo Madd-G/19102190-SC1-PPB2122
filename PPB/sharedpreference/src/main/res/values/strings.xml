@@ -1,12 +1,16 @@
 <resources>
     <string name="app_name">SharedPreference</string>
+    <string name="fullName">Nama lengkap</string>
     <string name="name">Nama</string>
     <string name="email">Email</string>
+    <string name="address">Alamat</string>
     <string name="phone">Nomor Telp</string>
     <string name="age">Umur</string>
     <string name="tv_theme">Theme Mode</string>
+    <string name="default_fullName">No Full Name</string>
     <string name="default_name">No Name</string>
     <string name="default_email">No Email</string>
+    <string name="default_address">No Address</string>
     <string name="default_phone">No Phone Number</string>
     <string name="default_age">No Age</string>
     <string name="default_theme">System Default</string>
